@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'hd6', name: { en: 'Green Tea L', ar: 'شاي أخضر (كبير L)' }, price: 30, desc: { en: 'Large soothing cup of green tea', ar: 'شاي أخضر طبيعي كبير' } },
         { id: 'hd7', name: { en: 'Hot Herbs M', ar: 'أعشاب ساخنة (وسط M)' }, price: 25, desc: { en: 'Anise, mint, or hibiscus hot herbal infusion', ar: 'أعشاب طبيعية مهدئة (ينسون، نعناع، كركديه)' } },
         { id: 'hd8', name: { en: 'Hot Herbs L', ar: 'أعشاب ساخنة (كبير L)' }, price: 30, desc: { en: 'Large soothing herbal selection', ar: 'مشروب أعشاب طبيعي كبير' } },
-        { id: 'hd9', name: { en: 'Coffee with Milk', ar: 'قهوة بالحليب' }, price: 30, desc: { en: 'Smooth brew combined with fresh steamed milk', ar: 'قهوة سلسة مع الحليب المبخر' } },
+    
         { id: 'hd10', name: { en: 'Cocoa M', ar: 'كاكاو (وسط M)' }, price: 40, desc: { en: 'Warm comforting cocoa topped with marshmallows', ar: 'كاكاو دافئ غني بقطع المارشملو اللذيذة' } },
         { id: 'hd11', name: { en: 'Cocoa L', ar: 'كاكاو (كبير L)' }, price: 45, desc: { en: 'Large cup of sweet warm cocoa', ar: 'كاكاو ساخن بحجم كبير' } },
         { id: 'hd12', name: { en: 'Hot Herbs Cocktail M', ar: 'كوكتيل أعشاب (وسط M)' }, price: 30, desc: { en: 'Signature blend of medicinal aromatic herbs', ar: 'توليفة أعشاب طبيعية خاصة تعزز المناعة' } },
