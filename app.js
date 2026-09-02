@@ -112,6 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
       hoursLabel: 'Opening Hours',
       hoursVal: 'Monday – Sunday: 8:00 AM – 2:00 AM',
       openStatus: 'Open Now for Dine-in & Takeaway',
+      openStatusOpen: 'Open Now for Dine-in & Takeaway',
+      openStatusClosed: 'Closed Now • Opens at 8:00 AM',
       whatsappLabel: 'WhatsApp & Direct Orders',
       socialLabel: 'Connect With Us',
       btnDirections: 'Get Live Directions',
@@ -230,8 +232,10 @@ document.addEventListener('DOMContentLoaded', () => {
       plusCodeLabel: 'رمز Plus Code على خرائط جوجل',
       citySub: 'دسوق، محافظة كفر الشيخ، مصر',
       hoursLabel: 'ساعات العمل',
-      hoursVal: 'يومياً: من 8:00 صباحاً وحتى 1:00 بعد منتصف الليل',
+      hoursVal: 'يومياً: من 8:00 صباحاً وحتى 2:00 بعد منتصف الليل',
       openStatus: 'مفتوح الآن للصالة والطلبات الخارجية والتيك أواي',
+      openStatusOpen: 'مفتوح الآن للصالة والطلبات الخارجية والتيك أواي',
+      openStatusClosed: 'مغلق الآن • يفتح في تمام الساعة 8:00 صباحاً',
       whatsappLabel: 'واتساب وطلب مباشر',
       socialLabel: 'تابعنا على مواقع التواصل',
       btnDirections: 'الاتجاهات عبر خرائط جوجل',
@@ -742,6 +746,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderMenu();
     renderReviews();
     updateRatingMetrics();
+    updateCafeStatus();
     renderGalleryThumbnails();
     updateGalleryPageUI();
   }
@@ -1254,6 +1259,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3200);
   }
 
+  function isCafeOpenNow() {
+    try {
+      const egyptTimeStr = new Date().toLocaleString('en-US', { timeZone: 'Africa/Cairo' });
+      const egyptDate = new Date(egyptTimeStr);
+      const hour = egyptDate.getHours();
+      return (hour >= 8 || hour < 2);
+    } catch (e) {
+      const hour = new Date().getHours();
+      return (hour >= 8 || hour < 2);
+    }
+  }
+
+  function updateCafeStatus() {
+    const statusIndicator = document.getElementById('cafeStatusIndicator');
+    if (!statusIndicator) return;
+
+    const isOpen = isCafeOpenNow();
+    const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+    const text = isOpen ? (t.openStatusOpen || t.openStatus) : (t.openStatusClosed || 'Closed Now');
+
+    statusIndicator.className = `info-sub ${isOpen ? 'status-open' : 'status-closed'}`;
+    statusIndicator.innerHTML = `<i class="fa-solid fa-circle"></i> <span>${text}</span>`;
+  }
+
   function escapeHtml(str) {
     if (!str) return '';
     return str
@@ -1267,4 +1296,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial Load
   applyLanguage(currentLang);
   updateRatingMetrics();
+  updateCafeStatus();
+
+  // Periodic Status Check Every 30s
+  setInterval(updateCafeStatus, 30000);
 });

@@ -1884,12 +1884,35 @@ body {
 .info-sub.status-open {
   color: #1a936f;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+}
+
+.info-sub.status-closed {
+  color: #d90429;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
 }
 
 .info-sub.status-open i {
+  color: #2ec4b6;
   font-size: 0.55rem;
   vertical-align: middle;
-  margin-right: 0.25rem;
+  margin-right: 0.35rem;
+}
+
+.info-sub.status-closed i {
+  color: #d90429;
+  font-size: 0.55rem;
+  vertical-align: middle;
+  margin-right: 0.35rem;
+}
+
+[dir="rtl"] .info-sub.status-open i,
+[dir="rtl"] .info-sub.status-closed i {
+  margin-right: 0;
+  margin-left: 0.35rem;
 }
 
 .plus-code-box {
