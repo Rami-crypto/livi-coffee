@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // firebase-db.js — LiVi Coffee | Firestore Real-Time Reviews
 // ============================================================
 // INSTRUCTIONS: Fill in your Firebase project config below.
@@ -25,12 +25,13 @@ import {
 // 🔥 YOUR FIREBASE CONFIG — Fill this in!
 // ─────────────────────────────────────────────
 const FIREBASE_CONFIG = {
-  apiKey:            "YOUR_API_KEY",
-  authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId:         "YOUR_PROJECT_ID",
-  storageBucket:     "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId:             "YOUR_APP_ID"
+  apiKey:            "AIzaSyA2tq8O9LjksBktKG_PAZIxZtBnAzOUG6c",
+  authDomain:        "livi-coffee.firebaseapp.com",
+  projectId:         "livi-coffee",
+  storageBucket:     "livi-coffee.firebasestorage.app",
+  messagingSenderId: "926870446037",
+  appId:             "1:926870446037:web:2f99ecd0da74faf21c275c",
+  measurementId:     "G-40BCR03J9C"
 };
 
 // ─────────────────────────────────────────────
