@@ -4,6 +4,17 @@
  * Multi-Page Menu Card Gallery Viewer (14 Pages) & Bilingual (EN/AR) Support
  */
 
+// ─── Firebase Real-Time Reviews DB ───
+import {
+  initFirebase,
+  seedInitialReviews,
+  saveReview as fbSaveReview,
+  listenToReviews,
+  incrementHelpful,
+  isDbReady
+} from './firebase-db.js';
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================
@@ -610,21 +621,39 @@ document.addEventListener('DOMContentLoaded', () => {
   let searchQuery = '';
   let tray = JSON.parse(localStorage.getItem('livi_tray')) || {};
   let userReviews = INITIAL_REVIEWS;
-  try {
-    const storedReviews = localStorage.getItem('livi_reviews');
-    if (storedReviews) {
-      const parsed = JSON.parse(storedReviews);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        userReviews = parsed;
+
+  // ─── Firebase init (with localStorage fallback) ───
+  const _fbReady = initFirebase();
+  if (_fbReady) {
+    // Seed once if DB is empty, then start listening
+    seedInitialReviews().then(() => {
+      listenToReviews((firestoreReviews) => {
+        if (firestoreReviews.length > 0) {
+          userReviews = firestoreReviews;
+        }
+        renderReviews();
+        updateRatingMetrics();
+      });
+    });
+  } else {
+    // Fallback: localStorage
+    try {
+      const storedReviews = localStorage.getItem('livi_reviews');
+      if (storedReviews) {
+        const parsed = JSON.parse(storedReviews);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          userReviews = parsed;
+        } else {
+          localStorage.setItem('livi_reviews', JSON.stringify(INITIAL_REVIEWS));
+        }
       } else {
         localStorage.setItem('livi_reviews', JSON.stringify(INITIAL_REVIEWS));
       }
-    } else {
-      localStorage.setItem('livi_reviews', JSON.stringify(INITIAL_REVIEWS));
+    } catch (e) {
+      userReviews = INITIAL_REVIEWS;
     }
-  } catch (e) {
-    userReviews = INITIAL_REVIEWS;
   }
+
 
   // Gallery Pages Data (15 official cards)
   const MENU_GALLERY_PAGES = [
@@ -958,7 +987,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  reviewSubmissionForm.addEventListener('submit', (e) => {
+  reviewSubmissionForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const name = document.getElementById('reviewerName').value.trim();
@@ -988,8 +1017,17 @@ document.addEventListener('DOMContentLoaded', () => {
       verified: true
     };
 
-    userReviews.unshift(newReview);
-    localStorage.setItem('livi_reviews', JSON.stringify(userReviews));
+    // ─── Save to Firebase (or localStorage fallback) ───
+    if (isDbReady()) {
+      // Firebase: The real-time listener will auto-update the UI
+      await fbSaveReview(newReview);
+    } else {
+      // Fallback: localStorage
+      userReviews.unshift(newReview);
+      localStorage.setItem('livi_reviews', JSON.stringify(userReviews));
+      renderReviews();
+      updateRatingMetrics();
+    }
 
     reviewSubmissionForm.reset();
     selectedStarValue.value = 5;
@@ -1002,12 +1040,11 @@ document.addEventListener('DOMContentLoaded', () => {
       successToast.classList.remove('show');
     }, 4000);
 
-    renderReviews();
-    updateRatingMetrics();
     showToast(currentLang === 'ar' ? 'تم نشر تقييمك بنجاح!' : 'Your review was published successfully!');
 
     document.getElementById('ratings').scrollIntoView({ behavior: 'smooth' });
   });
+
 
   function renderReviews() {
     reviewsGrid.innerHTML = '';
@@ -1059,7 +1096,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="review-card-bottom">
           <span><i class="fa-regular fa-clock"></i> ${escapeHtml(revDate)}</span>
-          <button class="helpful-btn" data-id="${rev.id}">
+          <button class="helpful-btn" data-id="${rev.id}" data-firestore-id="${rev.firestoreId || ''}">
             <i class="fa-regular fa-thumbs-up"></i> ${currentLang === 'ar' ? 'مفيد' : 'Helpful'} (${rev.helpfulCount})
           </button>
         </div>
@@ -1069,14 +1106,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     reviewsGrid.querySelectorAll('.helpful-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', async () => {
         const id = btn.dataset.id;
-        const found = userReviews.find(r => r.id === id);
+        const firestoreId = btn.dataset.firestoreId;
+        const found = userReviews.find(r => (r.firestoreId === firestoreId) || (r.id === id));
         if (found && !btn.classList.contains('voted')) {
           found.helpfulCount += 1;
           btn.classList.add('voted');
           btn.innerHTML = `<i class="fa-solid fa-thumbs-up"></i> ${currentLang === 'ar' ? 'مفيد' : 'Helpful'} (${found.helpfulCount})`;
-          localStorage.setItem('livi_reviews', JSON.stringify(userReviews));
+          if (isDbReady() && firestoreId) {
+            // Update in Firestore (atomic increment)
+            await incrementHelpful(firestoreId);
+          } else {
+            // Fallback: localStorage
+            localStorage.setItem('livi_reviews', JSON.stringify(userReviews));
+          }
           showToast(currentLang === 'ar' ? 'شكراً لتقييمك المفيد!' : 'Thank you for your feedback!');
         }
       });
