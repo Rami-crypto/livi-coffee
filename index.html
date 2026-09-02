@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <!-- Optimized Viewport for iPhone / iOS (with safe-area cover) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  
+  <title>LiVi Cafe — Made for You | كافيه ليفي في دسوق</title>
+  <meta name="description" content="Discover LiVi Cafe in Desouk. Artisanal coffee, signature mocktails, fresh juices, and delicious desserts. كافيه ليفي دسوق - تجربة قهوة ومشروبات مميزة">
+  <meta name="keywords" content="LiVi Cafe, كافيه ليفي, Desouk, دسوق, قهوة مختصة, specialty coffee, mocktails, desserts">
+  
+  <!-- Web App Manifest (PWA for iOS & Android) -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#071f18">
+  
+  <!-- Apple iOS Mobile Web App Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="LiVi Cafe">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+
+  <!-- Google Fonts: Cinzel, Playfair Display, Plus Jakarta Sans & Cairo for Arabic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Cinzel:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="ios-app-mode">
+
+  <!-- Ambient Backdrop Accents (Matching Menu Card Velvet Corner Theme) -->
+  <div class="draped-corner top-left" aria-hidden="true"></div>
+  <div class="draped-corner bottom-right" aria-hidden="true"></div>
+
+  <!-- Announcement Bar (iPhone Safe Top) -->
+  <div class="announcement-bar">
+    <div class="container announcement-content">
+      <span class="announcement-text" data-i18n="announcement">
+        <i class="fa-solid fa-gem"></i> Experience Premium Artisanal Brews & Treats
+      </span>
+      <span class="hours-badge">
+        <i class="fa-regular fa-clock"></i> <span data-i18n="hours">Open Daily: 8:00 AM 5– 2:00 AM</span>
+      </span>
+      <a href="#location" class="location-quick-link">
+        <i class="fa-solid fa-location-dot"></i> <span data-i18n="quickLoc">Desouk (4JCX+8PF)</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      
+      <!-- Logo Branding -->
+      <a href="#" class="brand-logo" aria-label="LiVi Cafe Home">
+        <div class="logo-symbol">
+          <svg viewBox="0 0 100 100" class="crest-svg" fill="currentColor">
+            <path d="M50 5 L88 32 L78 32 L50 82 L22 32 L12 32 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+            <path d="M30 32 L50 72 L70 32" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M40 32 L50 62 L60 32" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M50 32 L50 54" stroke="currentColor" stroke-width="2"/>
+            <line x1="26" y1="87" x2="74" y2="87" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <path d="M78 40 C88 40, 92 50, 84 62 C80 68, 72 70, 68 70" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-name">L<span class="brand-v">i</span>V<span class="brand-v">i</span></span>
+          <span class="brand-sub" data-i18n="brandSub">MADE FOR YOU</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="main-nav" id="mainNav">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link active" data-i18n="navHome">Home</a></li>
+          <li><a href="#menu" class="nav-link" data-i18n="navMenu">Menu</a></li>
+          <li><a href="#about" class="nav-link" data-i18n="navStory">Our Story</a></li>
+          <li><a href="#ratings" class="nav-link" data-i18n="navReviews">Reviews</a></li>
+          <li><a href="#location" class="nav-link" data-i18n="navLocation">Location</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions: Language Switch & Tray & iOS App Prompt -->
+      <div class="header-actions">
+        
+        <!-- Language Switcher Button (AR / EN) -->
+        <button class="lang-switch-btn" id="langSwitchBtn" aria-label="Change Language">
+          <i class="fa-solid fa-globe"></i>
+          <span id="langLabel">عربي</span>
+        </button>
+
+        <!-- Install Web App on iPhone Button -->
+        <button class="ios-install-btn" id="openInstallGuideBtn" title="Install on iPhone">
+          <i class="fa-brands fa-apple"></i>
+          <span class="ios-install-text" data-i18n="installApp">App</span>
+        </button>
+
+        <!-- Mobile Menu Hamburger -->
+        <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-leaf-left"></span>
+          <span data-i18n="heroBadge">WELCOME TO LIVI CAFE</span>
+          <span class="badge-leaf-right"></span>
+        </div>
+
+        <h1 class="hero-title" data-i18n-html="heroTitle">
+          Where Every Cup is <br>
+          <span class="gold-gradient-text">Artfully Crafted</span>
+        </h1>
+
+        <p class="hero-description" data-i18n="heroDesc">
+          Immerse yourself in Desouk’s premier specialty coffee and beverage haven. From single-origin espresso creations to vibrant mocktails and decadent desserts — crafted with passion, made just for you.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#menu" class="btn btn-gold">
+            <i class="fa-solid fa-utensils"></i>
+            <span data-i18n="btnMenu">View Full Menu</span>
+          </a>
+          <a href="#location" class="btn btn-emerald">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span data-i18n="btnVisit">Visit Us in Desouk</span>
+          </a>
+          <button class="btn btn-card-modal" id="viewOriginalCardBtn">
+            <i class="fa-regular fa-image"></i>
+            <span data-i18n="btnCard">Original Menu Card(14 Pages)</span>
+          </button>
+        </div>
+
+        <div class="hero-highlights">
+          <div class="highlight-item">
+            <div class="highlight-icon"><i class="fa-solid fa-coffee-bean"></i></div>
+            <div class="highlight-text">
+              <strong data-i18n="feat1Title">100% Arabica</strong>
+              <span data-i18n="feat1Sub">Specialty Beans</span>
+            </div>
+          </div>
+          <div class="highlight-divider"></div>
+          <div class="highlight-item">
+            <div class="highlight-icon"><i class="fa-solid fa-star"></i></div>
+            <div class="highlight-text">
+              <strong>4.9 / 5.0</strong>
+              <span data-i18n="feat2Sub">Top Rated in Desouk</span>
+            </div>
+          </div>
+          <div class="highlight-divider"></div>
+          <div class="highlight-item">
+            <div class="highlight-icon"><i class="fa-solid fa-heart"></i></div>
+            <div class="highlight-text">
+              <strong data-i18n="feat3Title">35+ Items</strong>
+              <span data-i18n="feat3Sub">Fresh Daily</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="crest-frame">
+          <div class="crest-glow"></div>
+          <div class="crest-art">
+            <svg viewBox="0 0 320 320" class="main-hero-crest">
+              <g class="crest-foliage gold-stroke">
+                <path d="M 60 160 C 40 130 50 90 70 60 C 65 85 75 110 95 130" fill="none" stroke-width="1.8"/>
+                <path d="M 50 110 C 35 100 30 80 40 70 C 48 80 50 95 50 110" fill="#dfb75c" opacity="0.4"/>
+                <path d="M 70 80 C 60 65 65 50 78 45 C 80 60 75 75 70 80" fill="#dfb75c" opacity="0.4"/>
+                <path d="M 85 115 C 80 100 88 85 100 80 C 100 95 92 110 85 115" fill="#dfb75c" opacity="0.4"/>
+                <path d="M 260 160 C 280 130 270 90 250 60 C 255 85 245 110 225 130" fill="none" stroke-width="1.8"/>
+                <path d="M 270 110 C 285 100 290 80 280 70 C 272 80 270 95 270 110" fill="#dfb75c" opacity="0.4"/>
+                <path d="M 250 80 C 260 65 255 50 242 45 C 240 60 245 75 250 80" fill="#dfb75c" opacity="0.4"/>
+                <path d="M 235 115 C 240 100 232 85 220 80 C 220 95 228 110 235 115" fill="#dfb75c" opacity="0.4"/>
+              </g>
+              <g class="gold-fill gold-stroke">
+                <path d="M 160 50 L 250 110 L 230 110 L 160 240 L 90 110 L 70 110 Z" fill="url(#goldGradient)" stroke="#c59b27" stroke-width="2"/>
+                <polygon points="120,110 160,225 128,110" fill="#fff" opacity="0.3"/>
+                <polygon points="140,110 160,225 146,110" fill="#fff" opacity="0.4"/>
+                <polygon points="160,110 160,225 160,110" stroke="#fff" opacity="0.6" stroke-width="1.5"/>
+                <polygon points="180,110 160,225 174,110" fill="#fff" opacity="0.4"/>
+                <polygon points="200,110 160,225 192,110" fill="#fff" opacity="0.3"/>
+                <rect x="100" y="245" width="120" height="12" rx="6" fill="url(#goldGradient)" stroke="#c59b27"/>
+                <path d="M 230 130 C 260 130 270 160 250 190 C 240 205 220 210 200 210" fill="none" stroke="url(#goldGradient)" stroke-width="7" stroke-linecap="round"/>
+              </g>
+              <defs>
+                <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f5e0a0"/>
+                  <stop offset="35%" stop-color="#d4af37"/>
+                  <stop offset="70%" stop-color="#aa7c11"/>
+                  <stop offset="100%" stop-color="#e9c875"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="crest-caption">
+            <span class="crest-title">LiVi</span>
+            <span class="crest-tagline" data-i18n="brandSub">— Made for You —</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Menu Section -->
+  <section class="menu-section" id="menu">
+    <div class="container">
+      
+      <!-- Section Header -->
+      <div class="section-header text-center">
+        <div class="botanical-divider">
+          <span class="leaf-left"></span>
+          <span class="section-kicker" data-i18n="menuKicker">CURATED SELECTIONS</span>
+          <span class="leaf-right"></span>
+        </div>
+        <h2 class="section-title" data-i18n="menuTitle">The LiVi Menu</h2>
+        <div class="gold-flourish-line">
+          <svg viewBox="0 0 200 20" class="flourish-svg">
+            <line x1="0" y1="10" x2="80" y2="10" stroke="#c59b27" stroke-width="1"/>
+            <circle cx="100" cy="10" r="4" fill="#c59b27"/>
+            <path d="M92 10 Q100 2 108 10 Q100 18 92 10" fill="#c59b27"/>
+            <line x1="120" y1="10" x2="200" y2="10" stroke="#c59b27" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Menu Controls: Category Filters & Search -->
+      <div class="menu-controls">
+        <div class="menu-search-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="menuSearchInput" placeholder="Search drinks, ingredients, desserts (e.g. Spanish Latte, Mojito)..." aria-label="Search menu items">
+          <button class="search-clear-btn" id="clearSearchBtn" aria-label="Clear search"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="category-tabs-scroll">
+          <div class="category-tabs" id="categoryTabs" role="tablist">
+            <button class="cat-tab active" data-category="all" role="tab" aria-selected="true">
+              <i class="fa-solid fa-layer-group"></i> <span data-i18n="catAll">All</span>
+            </button>
+     <button class="cat-tab" data-category="hot-drinks" role="tab" aria-selected="false">
+              <i class="fa-solid fa-fire-burner"></i> <span data-i18n="catHotDrinks">Hot Drinks</span>
+            </button>
+            <button class="cat-tab" data-category="coffee" role="tab" aria-selected="false">
+              <i class="fa-solid fa-mug-hot"></i> <span data-i18n="catCoffee">Coffee</span>
+            </button>
+                    <button class="cat-tab" data-category="specialty-coffee" role="tab" aria-selected="false">
+              <i class="fa-solid fa-filter"></i> <span data-i18n="catSpecialty">Specialty V60</span>
+            </button>
+            <button class="cat-tab" data-category="coffee-milk" role="tab" aria-selected="false">
+              <i class="fa-solid fa-mug-saucer"></i> <span data-i18n="catCoffeeMilk">Coffee With Milk</span>
+            </button>
+           
+            <button class="cat-tab" data-category="iced-coffee" role="tab" aria-selected="false">
+              <i class="fa-solid fa-snowflake"></i> <span data-i18n="catIcedCoffee">Iced Coffee & Frappe</span>
+            </button>
+            <button class="cat-tab" data-category="iced-blended" role="tab" aria-selected="false">
+              <i class="fa-solid fa-blender"></i> <span data-i18n="catIcedBlended">Iced Blended</span>
+            </button>
+            <button class="cat-tab" data-category="milk-shake" role="tab" aria-selected="false">
+              <i class="fa-solid fa-whiskey-glass"></i> <span data-i18n="catMilkShake">Milk Shake</span>
+            </button>
+            <button class="cat-tab" data-category="fresh-juices" role="tab" aria-selected="false">
+              <i class="fa-solid fa-lemon"></i> <span data-i18n="catFreshJuices">Fresh Juice</span>
+            </button>
+            <button class="cat-tab" data-category="smoothies" role="tab" aria-selected="false">
+              <i class="fa-solid fa-blender"></i> <span data-i18n="catSmoothies">Smoothie</span>
+            </button>
+            <button class="cat-tab" data-category="cocktails" role="tab" aria-selected="false">
+              <i class="fa-solid fa-martini-glass-citrus"></i> <span data-i18n="catCocktails">Cocktail</span>
+            </button>
+            <button class="cat-tab" data-category="mojito" role="tab" aria-selected="false">
+              <i class="fa-solid fa-glass-water"></i> <span data-i18n="catMojito">Mojito</span>
+            </button>
+            <button class="cat-tab" data-category="soft-drinks" role="tab" aria-selected="false">
+              <i class="fa-solid fa-bottle-water"></i> <span data-i18n="catSoftDrinks">Soft Drinks</span>
+            </button>
+            <button class="cat-tab" data-category="desserts" role="tab" aria-selected="false">
+              <i class="fa-solid fa-cake-candles"></i> <span data-i18n="catDesserts">Desserts</span>
+            </button>
+            <button class="cat-tab" data-category="extra" role="tab" aria-selected="false">
+              <i class="fa-solid fa-plus-circle"></i> <span data-i18n="catExtra">Extra & Flavors</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu Grid Container -->
+      <div class="menu-grid" id="menuGrid"></div>
+
+      <!-- Menu Signature Banner -->
+      <div class="menu-signature-banner text-center">
+        <div class="signature-leaf-wrap">
+          <span class="gold-leaf">🌿</span>
+          <span class="signature-text" data-i18n="signatureText">Thank you for choosing LiVi</span>
+          <span class="gold-leaf">🌿</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About / Story Section -->
+  <section class="about-section" id="about">
+    <div class="container about-container">
+      <div class="about-card">
+        <div class="about-badge" data-i18n="aboutBadge">THE LIVI PHILOSOPHY</div>
+        <h2 class="about-heading" data-i18n-html="aboutHeading">Crafted with Soul, <br>Served with Elegance</h2>
+        <p data-i18n="aboutDesc">
+          At LiVi Cafe, we believe every cup tells a story. Situated in the heart of Desouk, our sanctuary blends warm parchment elegance with emerald luxury to give you a comforting space to work, converse, and celebrate.
+        </p>
+        <div class="about-features">
+          <div class="feat">
+            <div class="feat-icon"><i class="fa-solid fa-seedling"></i></div>
+            <div class="feat-body">
+              <h4 data-i18n="aboutF1Title">Finest Ingredients</h4>
+              <p data-i18n="aboutF1Desc">Hand-selected fresh fruits, premium milk alternatives, and ethically sourced beans.</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <div class="feat-body">
+              <h4 data-i18n="aboutF2Title">Master Mixology</h4>
+              <p data-i18n="aboutF2Desc">Refreshing sparkling mocktails and signature artisan blends crafted to perfection.</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon"><i class="fa-solid fa-couch"></i></div>
+            <div class="feat-body">
+              <h4 data-i18n="aboutF3Title">Cozy Atmosphere</h4>
+              <p data-i18n="aboutF3Desc">High-speed Wi-Fi, ambient golden lighting, and welcoming spaces for everyone.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-stat-panel">
+        <div class="stat-card">
+          <span class="stat-num">100%</span>
+          <span class="stat-label" data-i18n="stat1">Fresh & Natural</span>
+        </div>
+        <div class="stat-card gold-border">
+          <span class="stat-num">35+</span>
+          <span class="stat-label" data-i18n="stat2">Signature Items</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">4.9★</span>
+          <span class="stat-label" data-i18n="stat3">Guest Rating</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">8am-2am</span>
+          <span class="stat-label" data-i18n="stat4">Daily Hospitality</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ratings & Reviews Section -->
+  <section class="reviews-section" id="ratings">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="botanical-divider">
+          <span class="leaf-left"></span>
+          <span class="section-kicker" data-i18n="reviewsKicker">COMMUNITY & FEEDBACK</span>
+          <span class="leaf-right"></span>
+        </div>
+        <h2 class="section-title" data-i18n="reviewsTitle">Guest Ratings & Reviews</h2>
+        <div class="gold-flourish-line">
+          <svg viewBox="0 0 200 20" class="flourish-svg">
+            <line x1="0" y1="10" x2="80" y2="10" stroke="#c59b27" stroke-width="1"/>
+            <circle cx="100" cy="10" r="4" fill="#c59b27"/>
+            <path d="M92 10 Q100 2 108 10 Q100 18 92 10" fill="#c59b27"/>
+            <line x1="120" y1="10" x2="200" y2="10" stroke="#c59b27" stroke-width="1"/>
+          </svg>
+        </div>
+        <p class="section-subtitle" data-i18n="reviewsSub">
+          See what our guests in Desouk have to say, or share your own LiVi experience!
+        </p>
+      </div>
+
+      <div class="ratings-layout">
+        
+        <!-- Aggregate Rating Summary Card -->
+        <div class="rating-overview-card">
+          <div class="overview-score">
+            <div class="score-large" id="avgRatingDisplay">4.9</div>
+            <div class="stars-gold">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <div class="score-sub" id="totalReviewsCountText">Based on 348 Verified Reviews</div>
+          </div>
+
+          <div class="rating-bars">
+            <div class="bar-row">
+              <span class="bar-label">5 <i class="fa-solid fa-star"></i></span>
+              <div class="bar-track"><div class="bar-fill" style="width: 88%;"></div></div>
+              <span class="bar-pct">88%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">4 <i class="fa-solid fa-star"></i></span>
+              <div class="bar-track"><div class="bar-fill" style="width: 9%;"></div></div>
+              <span class="bar-pct">9%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">3 <i class="fa-solid fa-star"></i></span>
+              <div class="bar-track"><div class="bar-fill" style="width: 2%;"></div></div>
+              <span class="bar-pct">2%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">2 <i class="fa-solid fa-star"></i></span>
+              <div class="bar-track"><div class="bar-fill" style="width: 1%;"></div></div>
+              <span class="bar-pct">1%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">1 <i class="fa-solid fa-star"></i></span>
+              <div class="bar-track"><div class="bar-fill" style="width: 0%;"></div></div>
+              <span class="bar-pct">0%</span>
+            </div>
+          </div>
+
+          <div class="rating-highlights-pills">
+            <span class="pill"><i class="fa-solid fa-check"></i> <span data-i18n="hl1">Exceptional Coffee</span></span>
+            <span class="pill"><i class="fa-solid fa-check"></i> <span data-i18n="hl2">Cozy Ambience</span></span>
+            <span class="pill"><i class="fa-solid fa-check"></i> <span data-i18n="hl3">Quick Friendly Service</span></span>
+          </div>
+
+          <button class="btn btn-gold btn-block" id="scrollToReviewFormBtn">
+            <i class="fa-solid fa-pen-nib"></i> <span data-i18n="btnWriteReview">Write a Review</span>
+          </button>
+        </div>
+
+        <!-- Interactive Review Submission Form -->
+        <div class="review-form-card" id="reviewFormCard">
+          <div class="form-header">
+            <h3 class="form-title"><i class="fa-solid fa-feather-pointed"></i> <span data-i18n="formTitle">Share Your Experience</span></h3>
+            <p class="form-subtitle" data-i18n="formSub">Your review helps our baristas and helps fellow guests discover favorites.</p>
+          </div>
+
+          <form id="reviewSubmissionForm">
+            <!-- Interactive Star Rating Input -->
+            <div class="form-group">
+              <label class="form-label"><span data-i18n="formRating">Your Rating</span> <span class="required-star">*</span></label>
+              <div class="star-rating-picker" id="starPicker">
+                <button type="button" class="star-btn" data-value="1" aria-label="1 Star"><i class="fa-solid fa-star"></i></button>
+                <button type="button" class="star-btn" data-value="2" aria-label="2 Stars"><i class="fa-solid fa-star"></i></button>
+                <button type="button" class="star-btn" data-value="3" aria-label="3 Stars"><i class="fa-solid fa-star"></i></button>
+                <button type="button" class="star-btn" data-value="4" aria-label="4 Stars"><i class="fa-solid fa-star"></i></button>
+                <button type="button" class="star-btn active" data-value="5" aria-label="5 Stars"><i class="fa-solid fa-star"></i></button>
+                <span class="selected-star-label" id="starRatingLabel">5.0 - Outstanding!</span>
+              </div>
+              <input type="hidden" id="selectedStarValue" value="5">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="reviewerName" class="form-label"><span data-i18n="formName">Your Name</span> <span class="required-star">*</span></label>
+                <input type="text" id="reviewerName" class="form-input" placeholder="e.g. Ahmed, Sarah, Karim..." required>
+              </div>
+
+              <div class="form-group">
+                <label for="reviewedItem" class="form-label" data-i18n="formFavorite">Favorite Drink / Dessert Ordered</label>
+                <select id="reviewedItem" class="form-select">
+                  <option value="Spanish Latte">Spanish Latte (سبانش لاتيه)</option>
+                  <option value="Caramel Macchiato">Caramel Macchiato (كراميل ماكياتو)</option>
+                  <option value="Flat White">Flat White (فلات وايت)</option>
+                  <option value="Iced Mocha">Iced Mocha (آيس موكا)</option>
+                  <option value="Cold Brew">Cold Brew (كولد برو)</option>
+                  <option value="Blue Ocean">Blue Ocean Soda (بلو أوشن)</option>
+                  <option value="Sunset Delight">Sunset Delight (سان سيت ديلايت)</option>
+                  <option value="Berry Bliss">Berry Bliss Smoothie (سموذي بيري بليس)</option>
+                  <option value="Chocolate Lava Cake">Chocolate Lava Cake (لافا كيك)</option>
+                  <option value="Tiramisu">Tiramisu (تراميسو)</option>
+                  <option value="Other Special Item">Other Special Item (مشروب آخر)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="reviewComments" class="form-label"><span data-i18n="formComments">Your Review</span> <span class="required-star">*</span></label>
+              <textarea id="reviewComments" class="form-textarea" rows="3" placeholder="Tell us about the flavor, presentation, vibe, or service..." required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="formLoved">What did you love most?</label>
+              <div class="tag-selector" id="tagSelector">
+                <button type="button" class="tag-pill active" data-tag="Amazing Taste">✨ <span data-i18n="tag1">Amazing Taste</span></button>
+                <button type="button" class="tag-pill" data-tag="Cozy Atmosphere">☕ <span data-i18n="tag2">Cozy Atmosphere</span></button>
+                <button type="button" class="tag-pill" data-tag="Friendly Staff">😊 <span data-i18n="tag3">Friendly Staff</span></button>
+                <button type="button" class="tag-pill" data-tag="Quick Service">⚡ <span data-i18n="tag4">Quick Service</span></button>
+                <button type="button" class="tag-pill" data-tag="Best in Desouk">🏆 <span data-i18n="tag5">Best in Desouk</span></button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-gold btn-block">
+              <i class="fa-solid fa-paper-plane"></i> <span data-i18n="btnSubmitReview">Submit Review</span>
+            </button>
+          </form>
+
+          <div class="review-success-toast" id="reviewSuccessToast">
+            <i class="fa-solid fa-circle-check"></i>
+            <span data-i18n="reviewSuccess">Thank you! Your review has been published.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Live Reviews Feed -->
+      <div class="reviews-feed-container">
+        <div class="feed-filter-bar">
+          <h3 class="feed-title"><i class="fa-solid fa-comments"></i> <span data-i18n="feedTitle">Community Feed</span></h3>
+          <div class="feed-sorting">
+            <label for="reviewSortSelect" data-i18n="sortBy">Sort by:</label>
+            <select id="reviewSortSelect" class="form-select-sm">
+              <option value="newest" data-i18n="sortNewest">Newest First</option>
+              <option value="highest" data-i18n="sortHighest">Highest Rating</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="reviews-grid" id="reviewsGrid"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Location & Google Maps Section -->
+  <section class="location-section" id="location">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="botanical-divider">
+          <span class="leaf-left"></span>
+          <span class="section-kicker" data-i18n="locKicker">FIND US IN DESOUK</span>
+          <span class="leaf-right"></span>
+        </div>
+        <h2 class="section-title" data-i18n="locTitle">Location & Contact</h2>
+        <div class="gold-flourish-line">
+          <svg viewBox="0 0 200 20" class="flourish-svg">
+            <line x1="0" y1="10" x2="80" y2="10" stroke="#c59b27" stroke-width="1"/>
+            <circle cx="100" cy="10" r="4" fill="#c59b27"/>
+            <path d="M92 10 Q100 2 108 10 Q100 18 92 10" fill="#c59b27"/>
+            <line x1="120" y1="10" x2="200" y2="10" stroke="#c59b27" stroke-width="1"/>
+          </svg>
+        </div>
+        <p class="section-subtitle" data-i18n="locSub">
+          Easily locate LiVi Cafe in Desouk using Google Maps or the Plus Code below.
+        </p>
+      </div>
+
+      <div class="location-grid">
+        
+        <!-- Details Card -->
+        <div class="location-info-card">
+          <div class="card-brand-badge">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>LiVi Cafe Desouk</span>
+          </div>
+
+          <h3 class="location-heading" data-i18n="visitHeading">Visit Our Cafe</h3>
+          <p class="location-desc" data-i18n="visitDesc">
+            We are conveniently situated in Desouk, ready to welcome you with handcrafted beverages and cozy seating.
+          </p>
+
+          <div class="info-list">
+            <!-- Google Maps Plus Code -->
+            <div class="info-item">
+              <div class="info-icon"><i class="fa-solid fa-map-pin"></i></div>
+              <div class="info-details">
+                <span class="info-label" data-i18n="plusCodeLabel">Google Maps Plus Code</span>
+                <span class="info-value plus-code-box">
+                  <code>4JCX+8PF Desouk</code>
+                  <button class="copy-code-btn" id="copyPlusCodeBtn" title="Copy Plus Code">
+                    <i class="fa-regular fa-copy"></i>
+                  </button>
+                </span>
+                <span class="info-sub" data-i18n="citySub">Desouk, Kafr El-Sheikh Governorate, Egypt</span>
+              </div>
+            </div>
+
+            <!-- Working Hours -->
+            <div class="info-item">
+              <div class="info-icon"><i class="fa-regular fa-clock"></i></div>
+              <div class="info-details">
+                <span class="info-label" data-i18n="hoursLabel">Opening Hours</span>
+                <span class="info-value" data-i18n="hoursVal">Monday – Sunday: 8:00 AM – 2:00 AM</span>
+                <span class="info-sub status-open"><i class="fa-solid fa-circle"></i> <span data-i18n="openStatus">Open Now for Dine-in & Takeaway</span></span>
+              </div>
+            </div>
+
+            <!-- Contact & Ordering -->
+            <div class="info-item">
+              <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+              <div class="info-details">
+                <span class="info-label" data-i18n="whatsappLabel">WhatsApp & Direct Orders</span>
+                <a href="https://wa.me/201043002416?text=Hello%20LiVi%20Cafe,%20I%20would%20like%20to%20place%20an%20order" target="_blank" class="info-value link-gold">+201043002416</a>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="info-item">
+              <div class="info-icon"><i class="fa-solid fa-share-nodes"></i></div>
+              <div class="info-details">
+                <span class="info-label" data-i18n="socialLabel">Connect With Us</span>
+                <div class="social-links-row">
+                  <a href="https://www.instagram.com/livi_coffee?igsi=bzhuejAxOGRjdzA2" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="https://www.facebook.com/profile.php?id=61592750537048" class="social-link" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                  <a href="https://www.tiktok.com/@livi.coffee?_r=1&_t=ZS-996NkkNcODE" class="social-link" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=4JCX%2B8PF+Desouk" target="_blank" class="social-link" title="Google Maps"><i class="fa-solid fa-map-location-dot"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="location-btn-group">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=4JCX%2B8PF+Desouk" target="_blank" class="btn btn-gold btn-block">
+              <i class="fa-solid fa-diamond-turn-right"></i>
+              <span data-i18n="btnDirections">Get Live Directions</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=4JCX%2B8PF+Desouk" target="_blank" class="btn btn-emerald-outline btn-block">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <span data-i18n="btnOpenMap">Open in Google Maps App</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Google Map Embedded Frame -->
+        <div class="map-frame-wrapper">
+          <div class="map-header-bar">
+            <span><i class="fa-solid fa-map"></i> Desouk, Egypt (4JCX+8PF)</span>
+            <span class="map-badge"><i class="fa-solid fa-compass"></i> Live Map</span>
+          </div>
+          <div class="map-responsive-container">
+            <iframe 
+              src="https://maps.google.com/maps?q=4JCX%2B8PF%20Desouk,%20Kafr%20El-Shaikh&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="LiVi Cafe Location in Desouk">
+            </iframe>
+          </div>
+          <div class="map-overlay-footer">
+            <span>Coordinates: <strong>4JCX+8PF Desouk</strong></span>
+            <a href="https://www.google.com/maps/search/?api=1&query=4JCX%2B8PF+Desouk" target="_blank" class="map-full-link">
+              <span data-i18n="viewLargerMap">View larger map</span> <i class="fa-solid fa-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-symbol small">
+            <svg viewBox="0 0 100 100" class="crest-svg" fill="currentColor">
+              <path d="M50 5 L88 32 L78 32 L50 82 L22 32 L12 32 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+              <path d="M30 32 L50 72 L70 32" fill="none" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M40 32 L50 62 L60 32" fill="none" stroke="currentColor" stroke-width="2"/>
+              <line x1="26" y1="87" x2="74" y2="87" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+              <path d="M78 40 C88 40, 92 50, 84 62 C80 68, 72 70, 68 70" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="footer-title">LiVi Cafe</h3>
+          <p class="footer-tagline" data-i18n="brandSub">— Made for You —</p>
+          <p class="footer-desc" data-i18n="footerDesc">Premium artisanal coffee, refreshing soda mixes, luscious mocktails, and fresh desserts in Desouk.</p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="col-title" data-i18n="footerQuickLinks">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#hero" data-i18n="navHome">Home</a></li>
+            <li><a href="#menu" data-i18n="navMenu">Full Menu</a></li>
+            <li><a href="#about" data-i18n="navStory">About LiVi</a></li>
+            <li><a href="#ratings" data-i18n="navReviews">Guest Reviews</a></li>
+            <li><a href="#location" data-i18n="navLocation">Find Us in Desouk</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="col-title" data-i18n="footerFavorites">Menu Favorites</h4>
+          <ul class="footer-links">
+            <li><a href="#menu" data-cat-jump="coffee">Spanish Latte (سبانش لاتيه)</a></li>
+            <li><a href="#menu" data-cat-jump="mocktails">Sunset Delight (سان سيت ديلايت)</a></li>
+            <li><a href="#menu" data-cat-jump="cold-drinks">Cold Brew Coffee (كولد برو)</a></li>
+            <li><a href="#menu" data-cat-jump="desserts">Chocolate Lava Cake (لافا كيك)</a></li>
+            <li><a href="#menu" data-cat-jump="soda-mix">Blue Ocean (بلو أوشن)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="col-title" data-i18n="footerLocHours">Location & Hours</h4>
+          <p class="footer-info-line"><i class="fa-solid fa-map-pin"></i> 4JCX+8PF Desouk, Egypt</p>
+          <p class="footer-info-line"><i class="fa-regular fa-clock"></i> 8:00 AM – 2:00 AM Daily</p>
+          <p class="footer-info-line"><i class="fa-solid fa-mug-hot"></i> Dine-in • Takeaway</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright"> &copy; 2026 LiVi Cafe. All rights reserved. Made for You.</p>
+        <div class="footer-legal">
+          <span>Desouk, Kafr El-Sheikh</span>
+          <span class="sep">•</span>
+          <a href="#hero" class="back-to-top"><i class="fa-solid fa-chevron-up"></i> Top</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       iOS Native Bottom Navigation Tab Bar
+       ========================================== -->
+  <nav class="ios-bottom-nav" id="iosBottomNav" aria-label="Mobile Bottom Navigation">
+    <a href="#hero" class="ios-nav-item active" data-target="hero">
+      <i class="fa-solid fa-house"></i>
+      <span data-i18n="navHome">Home</span>
+    </a>
+    <a href="#menu" class="ios-nav-item" data-target="menu">
+      <i class="fa-solid fa-utensils"></i>
+      <span data-i18n="navMenu">Menu</span>
+    </a>
+    <button class="ios-nav-item" id="iosCardsBtn" aria-label="View Menu Cards" onclick="document.getElementById('viewOriginalCardBtn').click()">
+      <i class="fa-solid fa-book-open"></i>
+      <span data-i18n="navCards">Menu Cards</span>
+    </button>
+    <a href="#ratings" class="ios-nav-item" data-target="ratings">
+      <i class="fa-solid fa-star"></i>
+      <span data-i18n="navReviews">Reviews</span>
+    </a>
+    <a href="#location" class="ios-nav-item" data-target="location">
+      <i class="fa-solid fa-map-location-dot"></i>
+      <span data-i18n="navLocation">Location</span>
+    </a>
+  </nav>
+
+  <!-- Original Menu Card Gallery Modal (15 Pages) -->
+  <div class="modal-backdrop" id="menuCardModal" aria-hidden="true">
+    <div class="modal-content-card menu-gallery-modal">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-book-open"></i>
+          <span>LiVi Menu Book</span>
+          <span class="gallery-page-badge" id="galleryPageBadge">1 / 15</span>
+        </div>
+        <button class="modal-close-btn" id="closeModalBtn" aria-label="Close modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="gallery-nav-bar">
+        <button class="gallery-arrow-btn" id="prevMenuPageBtn" aria-label="Previous Page">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <span class="gallery-page-title" id="galleryPageTitle">1. Brand Identity & Cover</span>
+        <button class="gallery-arrow-btn" id="nextMenuPageBtn" aria-label="Next Page">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <div class="modal-body gallery-body">
+        <img id="galleryMainImg" src="assets/menu-cover.jpg" alt="LiVi Cafe Menu Card" class="original-menu-img gallery-active-img">
+      </div>
+
+      <!-- Thumbnail Strip (15 Pages Dynamic) -->
+      <div class="gallery-thumb-strip" id="galleryThumbStrip"></div>
+
+      <div class="modal-footer">
+        <a id="downloadActiveCardBtn" href="assets/menu-cover.jpg" download="LiVi-Menu-Page-1.jpg" class="btn btn-gold btn-sm">
+          <i class="fa-solid fa-download"></i> <span data-i18n="btnDownloadCard">Download Page</span>
+        </a>
+        <button class="btn btn-outline btn-sm" id="closeModalBtn2" data-i18n="btnClose">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- iOS Add to Home Screen (A2HS) Modal Guide -->
+  <div class="modal-backdrop" id="iosInstallModal" aria-hidden="true">
+    <div class="modal-content-card ios-sheet-modal">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-brands fa-apple"></i>
+          <span data-i18n="installModalTitle">Install LiVi on your iPhone</span>
+        </div>
+        <button class="modal-close-btn" id="closeInstallModalBtn" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="ios-install-body">
+        <div class="ios-app-icon-preview">
+          <img src="assets/apple-touch-icon.png" alt="LiVi App Icon" class="ios-preview-img">
+          <div>
+            <h4>LiVi Cafe</h4>
+            <p>Desouk • Specialty Cafe App</p>
+          </div>
+        </div>
+
+        <div class="ios-steps">
+          <div class="ios-step-item">
+            <div class="step-badge">1</div>
+            <div class="step-text" data-i18n="step1">
+              Tap the <strong>Share button <i class="fa-solid fa-arrow-up-from-bracket"></i></strong> at the bottom of Safari.
+            </div>
+          </div>
+          <div class="ios-step-item">
+            <div class="step-badge">2</div>
+            <div class="step-text" data-i18n="step2">
+              Scroll down and tap <strong>"Add to Home Screen" <i class="fa-regular fa-square-plus"></i></strong>.
+            </div>
+          </div>
+          <div class="ios-step-item">
+            <div class="step-badge">3</div>
+            <div class="step-text" data-i18n="step3">
+              Tap <strong>"Add"</strong> in the top right corner. Enjoy instant full-screen experience!
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-gold btn-block" id="closeInstallModalBtn2" data-i18n="btnGotIt">Got it!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast -->
+  <div class="global-toast" id="globalToast" aria-live="polite"></div>
+
+  <!-- JavaScript Bundle -->
+  <script src="app.js"></script>
+</body>
+</html>
