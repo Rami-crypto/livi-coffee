@@ -595,16 +595,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  // ==========================================
-  // 4. App State & Elements
-  // ==========================================
-  let currentLang = 'en'; // English primary default
-  localStorage.setItem('livi_lang', 'en');
+  let currentLang = localStorage.getItem('livi_lang') || 'en';
   let currentCategory = 'all';
   let searchQuery = '';
   let tray = JSON.parse(localStorage.getItem('livi_tray')) || {};
   let userReviews = INITIAL_REVIEWS;
-  localStorage.setItem('livi_reviews', JSON.stringify(INITIAL_REVIEWS));
+  try {
+    const storedReviews = localStorage.getItem('livi_reviews');
+    if (storedReviews) {
+      const parsed = JSON.parse(storedReviews);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        userReviews = parsed;
+      } else {
+        localStorage.setItem('livi_reviews', JSON.stringify(INITIAL_REVIEWS));
+      }
+    } else {
+      localStorage.setItem('livi_reviews', JSON.stringify(INITIAL_REVIEWS));
+    }
+  } catch (e) {
+    userReviews = INITIAL_REVIEWS;
+  }
 
   // Gallery Pages Data (15 official cards)
   const MENU_GALLERY_PAGES = [
@@ -725,6 +735,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderMenu();
     renderReviews();
+    updateRatingMetrics();
     renderGalleryThumbnails();
     updateGalleryPageUI();
   }
