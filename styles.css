@@ -518,6 +518,30 @@ body {
   color: var(--gold-light);
 }
 
+.btn-apple {
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-apple:hover {
+  background: #1c1c1e;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.btn-apple-outline {
+  background: transparent;
+  color: var(--text-dark);
+  border: 1.5px solid #1c1c1e;
+}
+
+.btn-apple-outline:hover {
+  background: #1c1c1e;
+  color: #ffffff;
+}
+
 .btn-card-modal {
   background: rgba(255, 255, 255, 0.85);
   border: 1px solid var(--border-light);
